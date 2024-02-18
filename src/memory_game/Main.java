@@ -9,7 +9,8 @@ public class Main {
 			
 			cards.Add_card();
 			cards.show_allcards();
-			cards.Clear();
+			//cards.Clear();
+			
 			cards.Play();
 	}
 

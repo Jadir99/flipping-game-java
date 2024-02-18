@@ -21,9 +21,9 @@ public class Collection_cards {
 		//cards.add(new Card());
 		cards.add(new Card("path1","name1"));
 		cards.add(new Card("path2","name2"));
-		cards.add(new Card("path3","name3"));
-		cards.add(new Card("path4","name4"));
-		cards.add(new Card("path5","name5"));
+		//cards.add(new Card("path3","name3"));
+		//cards.add(new Card("path4","name4"));
+		//cards.add(new Card("path5","name5"));
 		
 		
 	}
@@ -53,29 +53,30 @@ public class Collection_cards {
 	    timer.schedule(new TimerTask() {
 	        @Override
 	        public void run() {
-	        	for (int i = 0; i < 50; ++i) {
-	    	        System.out.println();
-	    	    } // Call the method to clear the console
+	        	System.out.print("\033[H\033[2J");  
+	        	System.out.flush();  // Call the method to clear the console
 	        }
 	    }, 2000);
 	}
 	
 	public void Play() {
-		System.out.println("donner 2 nimbres pour meme name :");
+		System.out.println("give me two members from 0 to 5 :");
 		Scanner s =new Scanner(System.in);
-		int x,y;
-		x=s.nextInt();
-		y=s.nextInt();
-		
-		if(cards_double.get(x).id_card==cards_double.get(y).id_card && x!=y){
-        	System.out.println("correct u have "+ cards_double.size()/2);
-        }else {
-        	System.out.println("try again ( u have 3 more tryies");
-        }
-		show_allcards();
-	        
-	        
-		
+		int x,y,i=3,win=0;
+		while(i<=0 || win<cards_double.size()/2) {
+			x=s.nextInt();
+			y=s.nextInt();
+			
+			if(cards_double.get(x).id_card==cards_double.get(y).id_card && x!=y){
+	        	System.out.println("correct u have "+(cards_double.size()-2)+" and u eliminate the "+x+" and "+y);
+	        	win++;
+	        }else {
+	        	System.out.println("try again :( u have "+i+" more tryies ");
+	        	i--;
+	        }
+		}
+		if (i<=0) System.out.println("u loooose :(");
+		else System.out.println("u win :) ");
 	}
 
 }
